@@ -666,7 +666,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 31280462616581028, guid: fac4952b0a28d43369cd6509974be49f, type: 3}
       propertyPath: m_Name
-      value: Cube (1)
+      value: Brick (1)
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: fac4952b0a28d43369cd6509974be49f, type: 3}
@@ -818,7 +818,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 31280462616581028, guid: fac4952b0a28d43369cd6509974be49f, type: 3}
       propertyPath: m_Name
-      value: Cube (2)
+      value: Brick (2)
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: fac4952b0a28d43369cd6509974be49f, type: 3}
@@ -1033,7 +1033,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 31280462616581028, guid: fac4952b0a28d43369cd6509974be49f, type: 3}
       propertyPath: m_Name
-      value: Cube
+      value: Brick
+      objectReference: {fileID: 0}
+    - target: {fileID: 7473051922051988190, guid: fac4952b0a28d43369cd6509974be49f, type: 3}
+      propertyPath: numHits
+      value: 2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: fac4952b0a28d43369cd6509974be49f, type: 3}

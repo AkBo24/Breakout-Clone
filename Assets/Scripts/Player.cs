@@ -14,8 +14,7 @@ public class Player : MonoBehaviour
         playerRigidBody = GetComponent<Rigidbody>();
     }
 
-    // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
         float xPos = Camera.main.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, 0, -50)).x;
         playerRigidBody.MovePosition(new Vector3(xPos, -18, 0));
