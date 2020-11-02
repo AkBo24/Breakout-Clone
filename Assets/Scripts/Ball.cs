@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Ball : MonoBehaviour
 {
+
     private float speed;
     Rigidbody rigidbodyComponent;
     Vector3 velocity;
