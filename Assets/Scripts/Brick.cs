@@ -8,12 +8,16 @@ public class Brick : MonoBehaviour
     // [SerializeField] private int points;
     [SerializeField] private Vector3 rotator;
 
+    Material origMaterial, HitMaterial;
+    Renderer render;
+
     
     // Start is called before the first frame update
     void Start()
     {
         transform.Rotate(rotator * (transform.position.x + transform.position.y) * 0.1f);
-
+        render = GetComponent<Renderer>();
+        origMaterial = render.sharedMaterial;
         
     }
 
@@ -24,7 +28,10 @@ public class Brick : MonoBehaviour
     }
 
     private void OnCollisionEnter(Collision other) {
-        if( --numHits <= 0)
+        --numHits;
+        if( numHits <= 0)
             Destroy(gameObject);
+        
+        render.sharedMaterial = HitMaterial;
     }
 }
