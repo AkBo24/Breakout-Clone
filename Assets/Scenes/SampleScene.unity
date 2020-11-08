@@ -11337,7 +11337,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1400311007}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 2070731361}
+        m_TargetAssemblyTypeName: GameManager, Assembly-CSharp
+        m_MethodName: playClicked
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1400311007
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -16201,6 +16213,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ballPrefab: {fileID: 0}
   playerPrefab: {fileID: 0}
+  panelMenu: {fileID: 1358982849}
+  panelPlay: {fileID: 1358982849}
+  panelLevelCompleted: {fileID: 553946193}
+  panelGameOver: {fileID: 1353917501}
+  gameState: 0
 --- !u!1001 &2072798258
 PrefabInstance:
   m_ObjectHideFlags: 0
