@@ -7,12 +7,11 @@ public class GameManager : MonoBehaviour {
 
     //GameObjects
     public GameObject ballPrefab, playerPrefab;
+    [SerializeField] GameObject panelMenu, panelPlay, panelLevelCompleted, panelGameOver; //ui panels
+    [SerializeField] GameObject[] gameLevels;
 
     //UI Text
-    private Text scoreText, levelText, ballsText;
-
-    //UI Panels
-    [SerializeField] GameObject panelMenu, panelPlay, panelLevelCompleted, panelGameOver;
+    [SerializeField] private Text scoreText, levelText, ballsText;
 
     public static GameManager Instance {get; private set;}
 
@@ -28,12 +27,12 @@ public class GameManager : MonoBehaviour {
         }
     }
 
-    private int levels;
-    public int Levels {
-        get { return levels; }
+    private int level;
+    public int Level {
+        get { return level; }
         set { 
-            levels = value; 
-            levelText.text = "LEVEL: " + levels;
+            level = value; 
+            levelText.text = "LEVEL: " + level;
         }
     }
     
@@ -45,20 +44,12 @@ public class GameManager : MonoBehaviour {
             ballsText.text = "BALLS: " + balls;
         }
     }
-    
-
-    void Start() {
-        gameState = State.MENU;
-        Instance = this;
-        SwitchState(gameState);
-    }
-
 
     void SwitchState(State nextState) {
         EndState();
         BeginState(nextState);
     }
-
+    
     void BeginState(State newState) {
         switch (newState) {
             case State.MENU:
@@ -66,6 +57,9 @@ public class GameManager : MonoBehaviour {
                 break;
             case State.INIT:
                 panelPlay.SetActive(true);
+                Score = Level = 0;
+                Balls = 3;
+                SwitchState(State.LOAD_LEVEL);
                 break;
             case State.PLAY:
                 break;
@@ -99,6 +93,13 @@ public class GameManager : MonoBehaviour {
                 panelGameOver.SetActive(false);
                 break;
         }
+    }
+
+
+    void Start() {
+        gameState = State.MENU;
+        Instance = this;
+        SwitchState(gameState);
     }
 
     public void playClicked () {

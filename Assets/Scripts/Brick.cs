@@ -8,7 +8,7 @@ public class Brick : MonoBehaviour
     [SerializeField] private int points = 1000;
     [SerializeField] private Vector3 rotator;
 
-    Material origMaterial, HitMaterial;
+    [SerializeField] Material origMaterial, HitMaterial;
     Renderer render;
 
     // Start is called before the first frame update
