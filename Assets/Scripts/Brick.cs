@@ -33,5 +33,12 @@ public class Brick : MonoBehaviour
             Destroy(gameObject);
         
         render.sharedMaterial = HitMaterial;
+
+        //System delay, calls after 0.05 seconds 
+        Invoke("RestoreMaterial", 0.05f);
+    }
+
+    void RestoreMaterial() {
+        render.sharedMaterial = origMaterial;
     }
 }
