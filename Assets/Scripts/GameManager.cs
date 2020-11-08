@@ -14,11 +14,42 @@ public class GameManager : MonoBehaviour {
     //UI Panels
     [SerializeField] GameObject panelMenu, panelPlay, panelLevelCompleted, panelGameOver;
 
+    public static GameManager Instance {get; private set;}
+
     private enum State { MENU, INIT, PLAY, LEVEL_COMPLETED, LOAD_LEVEL, GAMEOVER }
     [SerializeField] private State gameState;
 
+    public int score;
+    public int Score  {
+        get { return score; }
+        set { 
+            score = value;
+            scoreText.text = "SCORE: " + score;
+        }
+    }
+
+    private int levels;
+    public int Levels {
+        get { return levels; }
+        set { 
+            levels = value; 
+            levelText.text = "LEVEL: " + levels;
+        }
+    }
+    
+    private int balls;
+    public int Balls {
+        get { return balls; }
+        set { 
+            balls = value; 
+            ballsText.text = "BALLS: " + balls;
+        }
+    }
+    
+
     void Start() {
         gameState = State.MENU;
+        Instance = this;
         SwitchState(gameState);
     }
 

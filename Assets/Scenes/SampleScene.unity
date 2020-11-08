@@ -16213,7 +16213,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ballPrefab: {fileID: 0}
   playerPrefab: {fileID: 0}
-  panelMenu: {fileID: 1358982849}
+  panelMenu: {fileID: 1836960904}
   panelPlay: {fileID: 1358982849}
   panelLevelCompleted: {fileID: 553946193}
   panelGameOver: {fileID: 1353917501}

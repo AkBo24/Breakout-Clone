@@ -5,13 +5,12 @@ using UnityEngine;
 public class Brick : MonoBehaviour
 {
     [SerializeField] private int numHits = 1;
-    // [SerializeField] private int points;
+    [SerializeField] private int points = 1000;
     [SerializeField] private Vector3 rotator;
 
     Material origMaterial, HitMaterial;
     Renderer render;
 
-    
     // Start is called before the first frame update
     void Start()
     {
@@ -29,8 +28,10 @@ public class Brick : MonoBehaviour
 
     private void OnCollisionEnter(Collision other) {
         --numHits;
-        if( numHits <= 0)
+        if( numHits <= 0) {
+            GameManager.Instance.score += points;
             Destroy(gameObject);
+        }
         
         render.sharedMaterial = HitMaterial;
 
