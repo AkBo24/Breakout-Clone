@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class GameManager : MonoBehaviour
-{
-    // Start is called before the first frame update
+public class GameManager : MonoBehaviour {
+
+    public GameObject ballPrefab, playerPrefab;
     void Start()
     {
         
@@ -12,7 +12,7 @@ public class GameManager : MonoBehaviour
 
     // Update is called once per frame
     void Update()
-    {
+    { 
         
     }
 }
