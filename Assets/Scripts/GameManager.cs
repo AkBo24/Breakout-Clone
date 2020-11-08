@@ -5,8 +5,7 @@ using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour {
 
-    //GameObjects
-    public GameObject ballPrefab, playerPrefab;
+    public GameObject ballPrefab, playerPrefab; //prefabs
     [SerializeField] GameObject panelMenu, panelPlay, panelLevelCompleted, panelGameOver; //ui panels
     [SerializeField] GameObject[] gameLevels;
 
@@ -67,6 +66,7 @@ public class GameManager : MonoBehaviour {
                 panelLevelCompleted.SetActive(true);
                 break;
             case State.LOAD_LEVEL:
+                Instantiate(playerPrefab);
                 break;
             case State.GAMEOVER:
                 panelGameOver.SetActive(true);
