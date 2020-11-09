@@ -1745,7 +1745,10 @@ MonoBehaviour:
   panelPlay: {fileID: 1358982849}
   panelLevelCompleted: {fileID: 553946193}
   panelGameOver: {fileID: 1353917501}
-  gameLevels: []
+  gameLevels:
+  - {fileID: 2536321363623529953, guid: aabef5c47ddce425d92e6eeed54dbf45, type: 3}
+  currBall: {fileID: 0}
+  currLevel: {fileID: 0}
   scoreText: {fileID: 346344319}
   levelText: {fileID: 1008181468}
   ballsText: {fileID: 142657276}
