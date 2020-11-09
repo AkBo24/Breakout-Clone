@@ -7,14 +7,15 @@ public class GameManager : MonoBehaviour {
 
     public GameObject ballPrefab, playerPrefab; //prefabs
     [SerializeField] GameObject panelMenu, panelPlay, panelLevelCompleted, panelGameOver; //ui panels
-    [SerializeField] GameObject[] gameLevels;
+    [SerializeField] private GameObject[] gameLevels;
+    [SerializeField] private GameObject currBall, currLevel;
 
     //UI Text
     [SerializeField] private Text scoreText, levelText, ballsText;
 
     public static GameManager Instance {get; private set;}
 
-    private enum State { MENU, INIT, PLAY, LEVEL_COMPLETED, LOAD_LEVEL, GAMEOVER }
+    private enum State { MENU, INIT, PLAY, LEVEL_COMPLETED, LOAD_LEVEL, GAME_OVER }
     [SerializeField] private State gameState;
 
     public int score;
@@ -67,8 +68,14 @@ public class GameManager : MonoBehaviour {
                 break;
             case State.LOAD_LEVEL:
                 Instantiate(playerPrefab);
+
+                if(Level < gameLevels.Length)
+                    currLevel = Instantiate(gameLevels[level]);
+                else
+                    SwitchState(State.GAME_OVER);
+
                 break;
-            case State.GAMEOVER:
+            case State.GAME_OVER:
                 panelGameOver.SetActive(true);
                 break;
         }
@@ -88,7 +95,7 @@ public class GameManager : MonoBehaviour {
                 break;
             case State.LOAD_LEVEL:
                 break;
-            case State.GAMEOVER:
+            case State.GAME_OVER:
                 panelPlay.SetActive(false);
                 panelGameOver.SetActive(false);
                 break;
@@ -114,12 +121,18 @@ public class GameManager : MonoBehaviour {
             case State.INIT:
                 break;
             case State.PLAY:
+                if (currBall == null) {
+                    if(Balls > 0)
+                        currBall = Instantiate(ballPrefab);
+                    else
+                        SwitchState(State.GAME_OVER);
+                }
                 break;
             case State.LEVEL_COMPLETED:
                 break;
             case State.LOAD_LEVEL:
                 break;
-            case State.GAMEOVER:
+            case State.GAME_OVER:
                 break;
         }
     }
