@@ -9,14 +9,14 @@ public class GameManager : MonoBehaviour {
     [SerializeField] GameObject panelMenu, panelPlay, panelLevelCompleted, panelGameOver; //ui panels
     [SerializeField] private GameObject[] gameLevels;
     [SerializeField] private GameObject currBall, currLevel;
-
-    //UI Text
     [SerializeField] private Text scoreText, levelText, ballsText;
 
     public static GameManager Instance {get; private set;}
 
     private enum State { MENU, INIT, PLAY, LEVEL_COMPLETED, LOAD_LEVEL, GAME_OVER }
     [SerializeField] private State gameState;
+
+    bool isSwitchingState;
 
     public int score;
     public int Score  {
@@ -45,9 +45,17 @@ public class GameManager : MonoBehaviour {
         }
     }
 
-    void SwitchState(State nextState) {
+    void SwitchState(State nextState, float delay = 0) {
+        StartCoroutine(SwitchDelay(nextState, delay));
+    }
+
+    IEnumerator SwitchDelay (State nextState, float delay) {
+        isSwitchingState = true;
+        yield return new WaitForSeconds(delay);
         EndState();
+        gameState  = nextState;
         BeginState(nextState);
+        isSwitchingState = false;
     }
     
     void BeginState(State newState) {
@@ -69,8 +77,10 @@ public class GameManager : MonoBehaviour {
             case State.LOAD_LEVEL:
                 Instantiate(playerPrefab);
 
-                if(Level < gameLevels.Length)
+                if(Level < gameLevels.Length) {
                     currLevel = Instantiate(gameLevels[level]);
+                    SwitchState(State.PLAY);
+                }
                 else
                     SwitchState(State.GAME_OVER);
 
