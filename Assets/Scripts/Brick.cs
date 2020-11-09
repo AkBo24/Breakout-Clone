@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Brick : MonoBehaviour
 {
-    [SerializeField] private int numHits = 1;
+    [SerializeField] private int numHits;
     [SerializeField] private int points = 1000;
     [SerializeField] private Vector3 rotator;
 
