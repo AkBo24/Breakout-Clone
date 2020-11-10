@@ -8,6 +8,7 @@ public class Ball : MonoBehaviour
     private float speed;
     Rigidbody rigidbodyComponent;
     Vector3 velocity;
+    Renderer ballRender;
 
     // Start is called before the first frame update
     void Start()
@@ -15,6 +16,7 @@ public class Ball : MonoBehaviour
         speed = 20f;
         rigidbodyComponent = GetComponent<Rigidbody>();
         rigidbodyComponent.velocity = Vector3.down * speed;
+        ballRender = GetComponent<Renderer>();
     }
 
     // FixedUpdate is called once per phisycs update
@@ -22,6 +24,11 @@ public class Ball : MonoBehaviour
     {
         rigidbodyComponent.velocity = rigidbodyComponent.velocity.normalized * speed;
         velocity = rigidbodyComponent.velocity;
+
+        if(!ballRender.isVisible) {
+            GameManager.Instance.Balls--;
+            Destroy(gameObject);
+        }
     }
 
     private void OnCollisionEnter(Collision collision) {
