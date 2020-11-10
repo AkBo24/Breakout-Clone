@@ -72,7 +72,11 @@ public class GameManager : MonoBehaviour {
             case State.PLAY:
                 break;
             case State.LEVEL_COMPLETED:
+                Destroy(currBall);
+                Destroy(currLevel);
+                Level++;
                 panelLevelCompleted.SetActive(true);
+                SwitchState(State.LOAD_LEVEL, 2f);
                 break;
             case State.LOAD_LEVEL:
                 Instantiate(playerPrefab);
@@ -137,12 +141,18 @@ public class GameManager : MonoBehaviour {
                     else
                         SwitchState(State.GAME_OVER);
                 }
+
+                if(currLevel != null && currLevel.transform.childCount == 0 && !isSwitchingState)
+                    SwitchState(State.LEVEL_COMPLETED);
+
                 break;
             case State.LEVEL_COMPLETED:
                 break;
             case State.LOAD_LEVEL:
                 break;
             case State.GAME_OVER:
+                if(Input.anyKeyDown)
+                    SwitchState(State.MENU);
                 break;
         }
     }

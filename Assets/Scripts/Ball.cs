@@ -17,8 +17,6 @@ public class Ball : MonoBehaviour
         rigidbodyComponent = GetComponent<Rigidbody>();
         Invoke("Launch", 0.5f);
         ballRender = GetComponent<Renderer>();
-
-
     }
 
     void Launch() {
