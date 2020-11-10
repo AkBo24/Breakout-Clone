@@ -9,7 +9,7 @@ public class GameManager : MonoBehaviour {
     [SerializeField] GameObject panelMenu, panelPlay, panelLevelCompleted, panelGameOver; //ui panels
     [SerializeField] private GameObject[] gameLevels;
     [SerializeField] private GameObject currBall, currLevel;
-    [SerializeField] private Text scoreText, levelText, ballsText;
+    public Text scoreText, levelText, ballsText, highScoreText;
 
     public static GameManager Instance {get; private set;}
 
@@ -18,7 +18,7 @@ public class GameManager : MonoBehaviour {
 
     bool isSwitchingState;
 
-    public int score;
+    private int score;
     public int Score  {
         get { return score; }
         set { 
@@ -62,6 +62,7 @@ public class GameManager : MonoBehaviour {
         switch (newState) {
             case State.MENU:
                 Cursor.visible = true;
+                highScoreText.text = "HIGHSCORE: " + PlayerPrefs.GetInt("Highscore");
                 panelMenu.SetActive(true);
                 break;
             case State.INIT:
@@ -69,6 +70,8 @@ public class GameManager : MonoBehaviour {
                 panelPlay.SetActive(true);
                 Score = Level = 0;
                 Balls = 3;
+                if(currLevel != null)
+                    Destroy(currLevel);
                 SwitchState(State.LOAD_LEVEL);
                 break;
             case State.PLAY:
@@ -92,6 +95,8 @@ public class GameManager : MonoBehaviour {
 
                 break;
             case State.GAME_OVER:
+                if(Score > PlayerPrefs.GetInt("Highscore")) 
+                    PlayerPrefs.SetInt("Highscore", Score);
                 panelGameOver.SetActive(true);
                 break;
         }
