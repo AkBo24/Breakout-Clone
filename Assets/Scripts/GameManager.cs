@@ -61,9 +61,11 @@ public class GameManager : MonoBehaviour {
     void BeginState(State newState) {
         switch (newState) {
             case State.MENU:
+                Cursor.visible = true;
                 panelMenu.SetActive(true);
                 break;
             case State.INIT:
+                Cursor.visible = false;
                 panelPlay.SetActive(true);
                 Score = Level = 0;
                 Balls = 3;
