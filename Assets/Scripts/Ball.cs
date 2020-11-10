@@ -15,8 +15,14 @@ public class Ball : MonoBehaviour
     {
         speed = 20f;
         rigidbodyComponent = GetComponent<Rigidbody>();
-        rigidbodyComponent.velocity = Vector3.down * speed;
+        Invoke("Launch", 0.5f);
         ballRender = GetComponent<Renderer>();
+
+
+    }
+
+    void Launch() {
+        rigidbodyComponent.velocity = Vector3.up * speed;
     }
 
     // FixedUpdate is called once per phisycs update
