@@ -158,7 +158,9 @@ public class GameManager : MonoBehaviour {
             case State.LOAD_LEVEL:
                 break;
             case State.GAME_OVER:
-                if(Input.anyKeyDown)
+                if(Input.GetKeyDown(KeyCode.Escape))
+                    Application.Quit();
+                else if(Input.anyKeyDown)
                     SwitchState(State.MENU);
                 break;
         }
